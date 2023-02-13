@@ -261,7 +261,8 @@ int main()
     int(*p)[3];
     int mag = 40;
     //char directory[] = "../.././data/model_slab.dat";
-    char directory[] = "../../.././data/model_slab.dat";
+    //char directory[] = "../../.././data/model_slab.dat";
+    char directory[] = "./data/model_slab.dat";
     //char directory1[] = "C:\\Users\\Administrator\\source\\data\\para.bin";
 
     //d = read_para(directory1);

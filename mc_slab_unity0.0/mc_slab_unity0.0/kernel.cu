@@ -789,8 +789,8 @@ int main()
     std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
     std::uniform_real_distribution<> dis(0.0, 1.0);
 
-    std::string directory0 = "C:\\Users\\Administrator\\source\\data\\model_slab.dat";
-    std::string directory1 = "C:\\Users\\Administrator\\source\\data\\path_slab.dat";
+    std::string directory0 = "./data/model_slab.dat";
+    std::string directory1 = "./data/path_slab.dat";
     std::vector< std::vector<float> >(*path);
     //std::vector< std::vector<float> > path_AM[AM];
 

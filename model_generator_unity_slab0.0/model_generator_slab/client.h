@@ -1,9 +1,12 @@
-#pragma once
-#include <stdio.h>  
-#include <Winsock.h>  
+// gpt_client.cpp : 
+//
+
+#include <winsock.h>
+#include <iostream>
+#include <stdio.h>   
 #pragma comment(lib,"ws2_32.lib")
 #pragma warning(disable:4996)
-#include <iostream>
+
 
 float* client() {
     WSADATA wsaData;
@@ -36,5 +39,9 @@ float* client() {
 
     return data;
 }
+
+
+
+
 
 

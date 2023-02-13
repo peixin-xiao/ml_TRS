@@ -8,7 +8,7 @@
 #pragma warning(disable:4996)
 
 
-int main() {
+float* client() {
     WSADATA wsaData;
     WSAStartup(MAKEWORD(2, 2), &wsaData);
 
@@ -21,22 +21,27 @@ int main() {
     listen(server_socket, 1);
 
     SOCKET client_socket = accept(server_socket, nullptr, nullptr);
-
-    int data[5];
+    
+    float data[4];
     recv(client_socket, (char*)&data, sizeof(data), 0);
 
     std::cout << "Received data: ";
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 4; i++) {
         std::cout << data[i] << " ";
     }
     std::cout << std::endl;
 
-    int response[5] = { 2 * data[0], 2 * data[1], 2 * data[2], 2 * data[3], 2 * data[4] };
+    float response[4] = { 2 * data[0], 2 * data[1], 2 * data[2], 2 * data[3] };
     send(client_socket, (char*)&response, sizeof(response), 0);
 
     closesocket(client_socket);
     WSACleanup();
 
-    return 0;
+    return data;
+}
+
+int main() {
+    float* k = client();
+
 }
 

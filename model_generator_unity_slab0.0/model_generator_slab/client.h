@@ -22,9 +22,9 @@ float* client() {
 
     SOCKET client_socket = accept(server_socket, nullptr, nullptr);
 
-    float data[4];
+    //float data[4];
+    float* data = (float*)malloc(sizeof(float) * 4);
     recv(client_socket, (char*)&data, sizeof(data), 0);
-
     std::cout << "Received data: ";
     for (int i = 0; i < 4; i++) {
         std::cout << data[i] << " ";

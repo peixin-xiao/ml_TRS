@@ -31,7 +31,7 @@ struct Tissue {
     float index_of_refraction;
 };
 
-short int* create3Dmodel(int Nbins, float binsize, float d,short* T) {
+short int* create3Dmodel(int Nbins, float binsize, float d,short*T) {
 
 
     //double binsize = 0.1e-3; 	//% size of each bin, eg. [cm] or [mm]
@@ -85,7 +85,7 @@ short int* create3Dmodel(int Nbins, float binsize, float d,short* T) {
     return (T);
 }
 
-short int* create3Dmodel_lr(int Nbins, int mag, float binsize, float d,short* T) { //lr: low resolution
+short int* create3Dmodel_lr(int Nbins, int mag, float binsize, float d) { //lr: low resolution
 
     //double binsize = 0.1e-3*mag; 	//% size of each bin, eg. [cm] or [mm]
 //    double T[Nbins][Nbins][Nbins][3];
@@ -102,7 +102,7 @@ short int* create3Dmodel_lr(int Nbins, int mag, float binsize, float d,short* T)
     x1 = Nbins * 0.75 - d / binsize;
 
 
-    T = (short int*)malloc(1 * pow(Nbins, 3) * sizeof(short int));
+    short* T = (short int*)malloc(1 * pow(Nbins, 3) * sizeof(short int));
 
     memset(T, 0, sizeof(short) * pow(Nbins, 3));
 
@@ -253,7 +253,7 @@ float read_para(std::string dic) {
     return a[0];
 }
 
-std::tuple<int,float,int, short* , float* , int(*)[3]> main_gen(short* T,float*k,int(*p)[3])
+std::tuple<int,float,int,short*,float*,int(*)[3]> main_gen()
 {
     int Nbins = Nb;
     float length_voxel = 0.1e-3;
@@ -263,14 +263,15 @@ std::tuple<int,float,int, short* , float* , int(*)[3]> main_gen(short* T,float*k
     int mag = 40;
     char directory[] = "./data/model_slab.dat";
     //char directory1[] = "C:\\Users\\Administrator\\source\\data\\para.bin";
-
+    
     //d = read_para(directory1);
-    k = client();
+    float*k = client();
     d = *k;
-    //int(*p)[3];
+    int(*p)[3];
     short int* T_lr = nullptr;
+    short* T = nullptr;
     T = create3Dmodel(Nbins, length_voxel, d,T);
-    T_lr = create3Dmodel_lr(int(Nbins / mag), mag, length_voxel, d,T_lr);
+    T_lr = create3Dmodel_lr(int(Nbins / mag), mag, length_voxel, d);
     std::tie(FLAG, p) = find_vertex(int(Nbins / mag), T_lr);
     //write_model(T, directory, Nbins, length_voxel, FLAG, p);
     //plot_geo(FLAG, p);

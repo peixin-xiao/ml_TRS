@@ -23,7 +23,7 @@
 #include "./model_gen.h"
 
 #define M 200//amount of a batch of photons
-#define AM 5000
+#define AM 1000
 #define N int(100) // amount of vertex of model geometry
 
 #define K int(1e5)
@@ -780,7 +780,7 @@ int main()
     //a[0] = { 0,"air",0.0001,1,1.0 ,1};
     float *k=nullptr;
    // char directory2[] = "C:\\Users\\Administrator\\source\\data\\para.bin";
-    std::tie(Nbins, length_voxel,FLAG,T1,k,vertex) = main_gen(T1,k,vertex);
+    std::tie(Nbins, length_voxel,FLAG,T1,k,vertex) = main_gen();
     std::cout << "received\n";
     a[0] = { 0,"air",     0.01,  0.01,   0 ,   1 };
     a[1] = { 1,"midium1", *(k+1), *(k + 2), *(k + 3) ,1.333};
